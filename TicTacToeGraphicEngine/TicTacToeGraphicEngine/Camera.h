@@ -7,7 +7,7 @@
 #include <glfw3.h>
 
 
-class Camera
+class __declspec(dllexport) Camera
 {
 public:
 	Camera();

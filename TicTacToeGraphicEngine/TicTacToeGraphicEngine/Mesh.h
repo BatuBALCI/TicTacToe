@@ -6,7 +6,7 @@
 #include <fstream>
 #include "Utility.h"
 
-class Mesh
+class __declspec(dllexport) Mesh
 {
 public:
 	Mesh();

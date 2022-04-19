@@ -22,7 +22,7 @@ uniform mat4 model;
 
 void main()                                                                       
 {                                                                                 
-    gl_Position = projection*view*model*vec4(pos, 1.0);     
+    gl_Position = model*vec4(pos, 1.0);     
     // this code assign colour to the vertex according to its position            
     // clamp function helps to get rid of minus signs to get proper color spectrum
     vCol = vec4(clamp(pos, 0.0f, 1.0f), 1.0f);  

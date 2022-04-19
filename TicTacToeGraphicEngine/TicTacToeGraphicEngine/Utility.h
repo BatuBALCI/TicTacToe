@@ -1,5 +1,18 @@
 #pragma once
 #include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
+#include "Mesh.h"
+#include "Shader.h"
+#include "Window.h"
+#include "Camera.h"
+#include "Texture.h"
+#include "Light.h"
+#include "Utility.h"
+#include "Material.h"
+
+class Mesh;
 
 class Utility
 {

@@ -3,7 +3,7 @@
 #include <glm/glm.hpp>
 #include <glew.h>
 // Base class of the all light types.
-class Light
+class __declspec(dllexport) Light
 {
 protected:
 	// this is the colour of the light, for example if the light doesn't have red colour inside

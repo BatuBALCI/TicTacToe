@@ -65,7 +65,7 @@ int Window::Initialize() {
     createCallbacks();
     // Call this function to make curser invisible on the open window by 
     // passing GLFW_CURSOR_DISABLED parameters.
-    glfwSetInputMode(mainWindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+    glfwSetInputMode(mainWindow, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 
     // Allow modern extension features
     glewExperimental = GL_TRUE;
@@ -95,6 +95,8 @@ void Window::createCallbacks()
     glfwSetKeyCallback(mainWindow, handleKeys);
     // It sets the mouse callbacks from given mainwindow to respective fields.
     glfwSetCursorPosCallback(mainWindow, handleMouse);
+    // It sets the mouse botton callbacks from given mainwindow to respective fields.
+    glfwSetMouseButtonCallback(mainWindow, handleMouseBottons);
 }
 
 GLfloat Window::GetXChange() 
@@ -110,6 +112,27 @@ GLfloat Window::GetYChange()
     yChange = 0.0f;
     return theChange;
 }
+
+GLfloat* Window::GetMouseLocation()
+{
+    return clickedPosition;
+}
+
+GLuint Window::GetClickedStatus()
+{
+    return clickedStatus;
+}
+
+GLuint Window::GetClickedButton()
+{
+    return clickedButton;
+}
+
+GLFWwindow* Window::GetMainWindow()
+{
+    return mainWindow;
+}
+
 
 // this order of input is important for glfwSEtKeyCallBack function to handle pressed key.
 void Window::handleKeys(GLFWwindow* window, int key, int code, int action, int mode) {
@@ -152,6 +175,23 @@ void Window::handleMouse(GLFWwindow* window, double xPos, double yPos)
 
     theWindow->lastX = xPos;
     theWindow->lastY = yPos;
+}
+
+void Window::handleMouseBottons(GLFWwindow* window, int button, int action, int mods)
+{
+    // get functions gets the window user pointer. By this pointer we can accsess the window
+    Window* theWindow = static_cast<Window*>(glfwGetWindowUserPointer(window));
+    if ((button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS) || (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS))
+    {   
+        theWindow->clickedPosition[0] = theWindow->lastX;
+        theWindow->clickedPosition[1] = theWindow->lastY;
+        theWindow->clickedStatus = action;
+        theWindow->clickedButton = button;
+    }
+    if ((button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_RELEASE) || (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_RELEASE))
+    {
+        theWindow->clickedStatus = action;
+    }
 }
 
 Window::~Window()

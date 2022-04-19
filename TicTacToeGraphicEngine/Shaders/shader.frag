@@ -54,5 +54,5 @@ void main()
 		}
 	}
 	
-	colour = texture(theTexture, texCoord) * (ambientColour + diffuseColour + specularColour);
+	colour = texture(theTexture, texCoord) * (ambientColour + diffuseColour + specularColour) + vec4(1.0f, 1.0f, 1.0f, 1.0f);
 }

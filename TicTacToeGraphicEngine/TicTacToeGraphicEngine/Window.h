@@ -4,7 +4,7 @@
 
 #include <glfw3.h>
 
-class Window
+class __declspec(dllexport) Window
 {
 public:
 	Window();
@@ -21,7 +21,10 @@ public:
 
 	GLfloat GetXChange();
 	GLfloat GetYChange();
-
+	GLfloat* GetMouseLocation();
+	GLuint GetClickedStatus();
+	GLuint GetClickedButton();
+	GLFWwindow* GetMainWindow();
 
 	void swapBuffers() {        
 		// it swaps the non visible buffer with visible ones
@@ -49,6 +52,12 @@ private:
 	GLfloat xChange;
 	// poisiton change of the curse in y direction
 	GLfloat yChange;
+	// the position of the mouse when the mouse bottom is clicked.
+	GLfloat clickedPosition[2];
+	// click status of the mouse button.
+	GLuint clickedStatus;
+	// which mouse button is clicked.
+	GLuint clickedButton;
 	// check if the first movement of the curser.
 	bool mouseFirstMoved;
 
@@ -59,6 +68,7 @@ private:
 	static void handleKeys(GLFWwindow* window, int key, int code, int action, int mode);
 	// this function handles the current curser position of the mouse.
 	static void handleMouse(GLFWwindow* window, double xPos, double yPos);
-
+	// this function handles the pressed mouse bottoms.
+	static void handleMouseBottons(GLFWwindow* window, int button, int action, int mods);
 };
 

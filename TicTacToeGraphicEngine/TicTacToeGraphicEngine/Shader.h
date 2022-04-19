@@ -6,7 +6,7 @@
 
 #include <glew.h>
 
-class Shader
+class __declspec(dllexport) Shader
 {
 public:
 	Shader();

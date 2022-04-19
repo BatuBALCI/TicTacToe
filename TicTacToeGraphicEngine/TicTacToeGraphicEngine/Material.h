@@ -1,6 +1,6 @@
 #pragma once
 #include <glew.h>
-class Material
+class __declspec(dllexport) Material
 {
 public:
 	Material();
