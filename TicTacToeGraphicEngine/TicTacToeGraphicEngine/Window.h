@@ -21,7 +21,7 @@ public:
 
 	GLfloat GetXChange();
 	GLfloat GetYChange();
-
+	GLFWwindow* GetMainWindow();
 
 	void swapBuffers() {        
 		// it swaps the non visible buffer with visible ones

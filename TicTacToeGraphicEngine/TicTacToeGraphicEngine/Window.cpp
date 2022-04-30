@@ -65,7 +65,7 @@ int Window::Initialize() {
     createCallbacks();
     // Call this function to make curser invisible on the open window by 
     // passing GLFW_CURSOR_DISABLED parameters.
-    glfwSetInputMode(mainWindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+    glfwSetInputMode(mainWindow, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 
     // Allow modern extension features
     glewExperimental = GL_TRUE;
@@ -109,6 +109,11 @@ GLfloat Window::GetYChange()
     GLfloat theChange = yChange;
     yChange = 0.0f;
     return theChange;
+}
+
+GLFWwindow* Window::GetMainWindow() 
+{
+    return mainWindow;
 }
 
 // this order of input is important for glfwSEtKeyCallBack function to handle pressed key.
